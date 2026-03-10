@@ -98,8 +98,8 @@ header{display:flex;align-items:center;justify-content:space-between;padding:1re
 .cinfo-item{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--tx3);line-height:1.7;}
 .cinfo-item span{color:var(--tx2);}
 .mzone{font-family:'DM Mono',monospace;font-size:0.54rem;letter-spacing:0.04em;margin-top:0.3rem;}
-@keyframes upfl{0%{text-shadow:0 0 20px var(--grn);color:var(--grn);}100%{text-shadow:none;}}
-@keyframes downfl{0%{text-shadow:0 0 20px var(--red);color:var(--red);}100%{text-shadow:none;}}
+@keyframes upfl{0%{text-shadow:0 0 20px var(--grn);color:var(--grn);}100%{text-shadow:none;color:var(--tx);}}
+@keyframes downfl{0%{text-shadow:0 0 20px var(--red);color:var(--red);}100%{text-shadow:none;color:var(--tx);}}
 .ufl{animation:upfl 0.5s ease-out forwards;}.dfl{animation:downfl 0.5s ease-out forwards;}
 .scell{background:var(--card);padding:1.3rem 1.6rem;flex:1 1 150px;min-width:0;}
 .slbl-row{display:flex;align-items:center;gap:5px;margin-bottom:0.3rem;}
@@ -129,7 +129,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:1re
 .acell{background:var(--card);padding:1.1rem 1.3rem;position:relative;min-width:0;}
 .acell-ctrl{border-bottom:3px solid rgba(45,212,191,0.5);}
 .acell-lbl{font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--tx3);margin-bottom:0.25rem;padding-right:1.4rem;line-height:1.8;}
-.acell-val{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.9rem,4.2vw,3.4rem);line-height:0.92;letter-spacing:0.02em;color:var(--tx);}
+.acell-val{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.9rem,4.2vw,3.4rem);line-height:0.92;letter-spacing:0.02em;color:var(--tx);transition:color 0.3s;}
 .acell-badge{display:inline-flex;align-items:center;font-family:'DM Mono',monospace;font-size:0.58rem;padding:0.12rem 0.4rem;border-radius:4px;margin-top:0.2rem;font-weight:500;white-space:nowrap;}
 .acell-badge.pos{background:rgba(52,211,153,0.12);color:var(--grn);}
 .acell-badge.neg{background:rgba(248,113,113,0.12);color:var(--red);}
@@ -161,6 +161,22 @@ header{display:flex;align-items:center;justify-content:space-between;padding:1re
 @keyframes tfade{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
 .tooltip-text{font-family:'DM Mono',monospace;font-size:0.75rem;color:#e8f0ff;line-height:1;}
 .tooltip-arrow{display:none;}
+
+.mkt-dot{display:inline-block;width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+.info-btn-wrap{position:absolute;top:0.7rem;right:0.7rem;display:-webkit-flex;display:flex;align-items:center;gap:5px;z-index:2;}
+.info-btn-wrap .info-btn{position:relative;top:auto;right:auto;}
+.footer-tip-wrap{position:relative;display:inline-flex;align-items:center;cursor:pointer;}
+.footer-tip-btn{font-family:'DM Mono',monospace;font-size:0.44rem;color:var(--tx3);background:none;border:none;cursor:pointer;padding:0;letter-spacing:0.05em;text-decoration:underline dotted;text-underline-offset:2px;}
+.footer-tip-btn:hover{color:var(--tx2);}
+.footer-tip-box{display:none;position:fixed;z-index:1000;background:#0e1a2e;border:1px solid rgba(45,212,191,0.4);border-radius:8px;padding:1rem 1.2rem;width:320px;box-shadow:0 8px 32px rgba(0,0,0,0.8);}
+.footer-tip-box.show{display:block;animation:tfade 0.15s ease-out;}
+.footer-tip-row{display:flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--tx2);padding:0.25rem 0;border-bottom:1px solid rgba(255,255,255,0.05);}
+.footer-tip-row:last-child{border-bottom:none;}
+.footer-tip-row .mkt-dot{width:7px;height:7px;flex-shrink:0;}
+.footer-tip-name{color:var(--tx);min-width:90px;}
+.footer-tip-hours{opacity:0.75;font-size:0.58rem;}
+.footer-tip-title{font-family:'DM Mono',monospace;font-size:0.5rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--tx3);margin-bottom:0.6rem;}
+
 /* FOOTER */
 footer{border-top:1px solid var(--b1);padding:0.55rem 0;margin-top:0.35rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:0.3rem;}
 .fn{font-family:'DM Mono',monospace;font-size:0.44rem;color:var(--tx3);}
@@ -258,7 +274,9 @@ body.fs-mode .scell{padding:0.7rem 1rem;}
     </div>
   </div>
   <div class="grid-row">
-    <div class="scell">
+    <div class="scell" style="position:relative;">
+      <div class="info-btn-wrap"><button class="info-btn" id="ib-mayer" style="border-color:rgba(160,170,210,0.2);color:rgba(160,170,210,0.35);" onclick="toggleTip('mayer')"><svg width="8" height="11" viewBox="0 0 8 11" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="4" cy="1.2" r="0.9" fill="currentColor"/><rect x="3.4" y="3.2" width="1.2" height="5.6" rx="0.1" fill="currentColor"/><rect x="1.8" y="3.2" width="4.4" height="0.9" rx="0.3" fill="currentColor"/><rect x="1.8" y="8" width="4.4" height="0.9" rx="0.3" fill="currentColor"/></svg></button></div>
+      <div class="tooltip" id="tip-mayer"><div class="tooltip-arrow"></div><div class="tooltip-text">Razão entre o preço atual do Bitcoin e sua Média Móvel de 200 dias. Valores abaixo de 1,0 indicam que o BTC está abaixo da média histórica; acima de 1,0, acima dela.</div></div>
       <div class="slbl-row"><div class="slbl">Mayer Multiple</div></div>
       <div class="sval" id="sMayer">&#8212;</div>
       <div class="ssub" id="sMayerLbl">&#8212;</div>
@@ -386,6 +404,63 @@ var ASSET_LIST=[
    tip:'Unidade: 1 bushel de soja = 27,2 kg (60 libras). Mesmo padr\u00e3o do trigo, usado nos contratos da CBOT (Chicago Board of Trade).\nCommodity agr\u00edcola mais importante para o Brasil \u2014 maior exportador mundial. Base de ra\u00e7\u00e3o animal e \u00f3leo vegetal. Seu pre\u00e7o afeta diretamente o agroneg\u00f3cio e o c\u00e2mbio brasileiro.'}
 ];
 
+
+/* ── MARKET HOURS (horário de Brasília = UTC-3) ── */
+var MARKET_HOURS = {
+  /* Cripto: 24/7 */
+  btc:   {always:true},
+  eth:   {always:true},
+  /* Metais/Energia (COMEX/NYMEX): dom 18h-sex 17h NY = dom 20h-sex 19h BRT, pausa diária 17h-18h NY */
+  gold:   {tz:-5,days:[0,1,2,3,4,5],open:{h:18,m:0},close:{h:17,m:0},nextDay:true,pause:{from:{h:17,m:0},to:{h:18,m:0}}},
+  silver: {tz:-5,days:[0,1,2,3,4,5],open:{h:18,m:0},close:{h:17,m:0},nextDay:true,pause:{from:{h:17,m:0},to:{h:18,m:0}}},
+  copper: {tz:-5,days:[0,1,2,3,4,5],open:{h:18,m:0},close:{h:17,m:0},nextDay:true,pause:{from:{h:17,m:0},to:{h:18,m:0}}},
+  wti:    {tz:-5,days:[0,1,2,3,4,5],open:{h:18,m:0},close:{h:17,m:0},nextDay:true,pause:{from:{h:17,m:0},to:{h:18,m:0}}},
+  gas:    {tz:-5,days:[0,1,2,3,4,5],open:{h:18,m:0},close:{h:17,m:0},nextDay:true,pause:{from:{h:17,m:0},to:{h:18,m:0}}},
+  /* Bolsas NY (NYSE/NASDAQ): seg-sex 9:30-16h NY */
+  sp500:  {tz:-5,days:[1,2,3,4,5],open:{h:9,m:30},close:{h:16,m:0},nextDay:false},
+  nasdaq: {tz:-5,days:[1,2,3,4,5],open:{h:9,m:30},close:{h:16,m:0},nextDay:false},
+  /* Agrícolas CBOT: dom 19h-sex 13:20h Chicago (UTC-6) */
+  wheat:  {tz:-6,days:[0,1,2,3,4,5],open:{h:19,m:0},close:{h:13,m:20},nextDay:true},
+  soy:    {tz:-6,days:[0,1,2,3,4,5],open:{h:19,m:0},close:{h:13,m:20},nextDay:true}
+};
+
+function isMarketOpen(id){
+  var mh=MARKET_HOURS[id];
+  if(!mh)return false;
+  if(mh.always)return true;
+  var now=new Date();
+  /* Convert to market's local time */
+  var utc=now.getTime()+(now.getTimezoneOffset()*60000);
+  var local=new Date(utc+(mh.tz*3600000));
+  var day=local.getDay(); /* 0=dom */
+  var h=local.getHours(),m=local.getMinutes();
+  var mins=h*60+m;
+  if(mh.days.indexOf(day)===-1)return false;
+  var openMins=mh.open.h*60+mh.open.m;
+  var closeMins=mh.close.h*60+mh.close.m;
+  /* Pause check */
+  if(mh.pause){
+    var pauseFrom=mh.pause.from.h*60+mh.pause.from.m;
+    var pauseTo=mh.pause.to.h*60+mh.pause.to.m;
+    if(mins>=pauseFrom&&mins<pauseTo)return false;
+  }
+  if(mh.nextDay){
+    /* Market spans midnight: open after openMins OR before closeMins */
+    return mins>=openMins||mins<closeMins;
+  } else {
+    return mins>=openMins&&mins<closeMins;
+  }
+}
+
+function getMarketStatusDot(id){
+  var mh=MARKET_HOURS[id];
+  if(!mh)return '';
+  var open=isMarketOpen(id);
+  var color=open?'#34d399':'#44445a';
+  var title=open?'Mercado aberto':'Mercado fechado';
+  return '<span class="mkt-dot" style="background:'+color+'" title="'+title+'"></span>';
+}
+
 function g(id){return document.getElementById(id);}
 function usd(n,d){if(n==null||isNaN(n))return'\u2014';d=d==null?0:d;return '$'+n.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d});}
 function brl(n){if(n==null||isNaN(n))return'\u2014';return 'R$'+n.toLocaleString('pt-BR',{minimumFractionDigits:0,maximumFractionDigits:0});}
@@ -440,7 +515,7 @@ function setMode(m){
     killWS();
     g('assetsBtn').classList.add('mode-active');    g('assetsPanel').style.display='block';
     setPill('wait','Assets');
-    g('footerSrc').textContent='Assets: Binance \u00b7 Yahoo Finance \u00b7 MetalsAPI';
+    g('footerSrc').innerHTML='Assets: Binance &middot; Yahoo Finance &middot; MetalsAPI &nbsp;<span class="footer-tip-wrap"><button class="footer-tip-btn" onclick="toggleFooterTip(event)">hor&aacute;rios &#9432;</button><div class="footer-tip-box" id="footerTipBox"></div></span>';buildFooterTip();
     if(!S.assetsDomBuilt){buildAssetsGrid();S.assetsDomBuilt=true;}
     fetchAssetsData();
     startClockTick();
@@ -560,7 +635,7 @@ var A_IV={};   /* id -> current interval string */
 var A_CLOSE={}; /* id:iv -> close price USD */
 
 /* Interval -> Yahoo range/interval params */
-var IV_YAHOO={'1d':{range:'5d',interval:'1d'},'1s':{range:'1mo',interval:'1wk'},'1m':{range:'3mo',interval:'1mo'}};
+var IV_YAHOO={'1d':{range:'5d',interval:'1d'},'1s':{range:'2mo',interval:'1wk'},'1m':{range:'6mo',interval:'1mo'}};
 /* Interval -> Binance kline interval */
 var IV_BIN={'1h':'1h','1d':'1d','1s':'1w','1m':'1M'};
 /* Interval -> display label */
@@ -599,10 +674,10 @@ function renderVarBadge(id,currentUsd,closeUsd,iv){
 async function fetchAssetVar(id,iv){
   var cacheKey=id+':'+iv;
   var a=ASSET_LIST.find(function(x){return x.id===id;})||{};
-  var curPrice=(id==='cur')?(S_assets.usdBrl||S.usdBrl||0):(a._usdPrice||0);
 
   /* Serve from cache if available */
   if(A_CLOSE[cacheKey]!==undefined){
+    var curPrice=(id==='cur')?(S_assets.usdBrl||S.usdBrl||0):(a._usdPrice||0);
     renderVarBadge(id,curPrice,A_CLOSE[cacheKey],iv);
     return;
   }
@@ -635,7 +710,8 @@ async function fetchAssetVar(id,iv){
     }
 
     if(closeUsd)A_CLOSE[cacheKey]=closeUsd;
-    renderVarBadge(id,curPrice,closeUsd,iv);
+    var curPriceFinal=(id==='cur')?(S_assets.usdBrl||S.usdBrl||0):((ASSET_LIST.find(function(x){return x.id===id;})||{})._usdPrice||0);
+    renderVarBadge(id,curPriceFinal,closeUsd,iv);
   }catch(e){
     setVarBadge(id,'neu','<span class="acell-var-lbl">erro ao buscar</span>');
   }
@@ -657,11 +733,63 @@ function initAssetVariations(){
   }
 }
 
+
+function buildFooterTip(){
+  var box=g('footerTipBox');if(!box)return;
+  var markets=[
+    {ids:['btc','eth'],          name:'Bitcoin / Ethereum', hours:'Sempre aberto'},
+    {ids:['gold','silver','copper','wti','gas'], name:'Metais e Energia (COMEX/NYMEX)', hours:'Abre domingo às 20h, fecha sexta às 19h (pausa diária das 19h às 20h)'},
+    {ids:['sp500','nasdaq'],     name:'S&P 500 / Nasdaq (NYSE)', hours:'Segunda a sexta, das 10:30h às 17h'},
+    {ids:['wheat','soy'],        name:'Trigo / Soja (CBOT)', hours:'Abre domingo às 21h, fecha sexta às 14:20h'}
+  ];
+  var h='<div class="footer-tip-title">Horários de operação (fuso do dispositivo)</div>';
+  markets.forEach(function(m){
+    var open=m.ids.some(function(id){return isMarketOpen(id);});
+    var dot='<span class="mkt-dot" style="background:'+(open?'#34d399':'#44445a')+'"></span>';
+    h+='<div class="footer-tip-row">'+dot+'<span class="footer-tip-name">'+m.name+'</span><span class="footer-tip-hours">'+m.hours+'</span></div>';
+  });
+  box.innerHTML=h;
+}
+
+function toggleFooterTip(e){
+  e.stopPropagation();
+  var box=g('footerTipBox');if(!box)return;
+  var open=box.classList.contains('show');
+  document.querySelectorAll('.footer-tip-box').forEach(function(b){b.classList.remove('show');});
+  if(!open){
+    buildFooterTip();
+    box.style.visibility='hidden';
+    box.style.display='block';
+    var btn=e.currentTarget;
+    var rect=btn.getBoundingClientRect();
+    var tw=320,th=box.offsetHeight||200;
+    var vw=window.innerWidth,vh=window.innerHeight;
+    var left=rect.right-tw;
+    if(left<8)left=8;
+    if(left+tw>vw-8)left=vw-tw-8;
+    var top;
+    if(rect.top-th-8>0){top=rect.top-th-8;}
+    else{top=rect.bottom+8;}
+    if(top<8)top=8;
+    if(top+th>vh-8)top=Math.max(8,vh-th-8);
+    box.style.left=left+'px';
+    box.style.top=top+'px';
+    box.style.visibility='';
+    box.style.display='';
+    box.classList.add('show');
+  }
+}
+document.addEventListener('click',function(e){
+  if(!e.target.closest('.footer-tip-wrap')){
+    document.querySelectorAll('.footer-tip-box').forEach(function(b){b.classList.remove('show');});
+  }
+});
+
 function buildAssetsGrid(){
   var h='';
   /* Cell 0: currency controller */
   h+='<div class="acell acell-ctrl" id="cell-cur">'
-    +'<button class="info-btn" id="ib-cur" onclick="toggleTip(\'cur\')"><svg width="8" height="11" viewBox="0 0 8 11" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="4" cy="1.2" r="0.9" fill="currentColor"/><rect x="3.4" y="3.2" width="1.2" height="5.6" rx="0.1" fill="currentColor"/><rect x="1.8" y="3.2" width="4.4" height="0.9" rx="0.3" fill="currentColor"/><rect x="1.8" y="8" width="4.4" height="0.9" rx="0.3" fill="currentColor"/></svg></button>'
+    +'<div class="info-btn-wrap"><button class="info-btn" id="ib-cur" onclick="toggleTip(\'cur\')"><svg width="8" height="11" viewBox="0 0 8 11" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="4" cy="1.2" r="0.9" fill="currentColor"/><rect x="3.4" y="3.2" width="1.2" height="5.6" rx="0.1" fill="currentColor"/><rect x="1.8" y="3.2" width="4.4" height="0.9" rx="0.3" fill="currentColor"/><rect x="1.8" y="8" width="4.4" height="0.9" rx="0.3" fill="currentColor"/></svg></button></div>'
     +'<div class="tooltip" id="tip-cur"><div class="tooltip-arrow"></div><div class="tooltip-text">'+CTRL.tip+'</div></div>'
     +'<div class="acell-lbl"><span class="acell-tag '+CTRL.tagClass+'">'+CTRL.tag+'</span>'+CTRL.label+'</div>'
     +'<div class="acell-val" id="val-cur">'+CTRL.vals[S.assetCur]+'</div>'
@@ -677,7 +805,7 @@ function buildAssetsGrid(){
   ASSET_LIST.forEach(function(a){
     var tipHtml=a.tip.replace(/\n/g,'<br><br>');
     h+='<div class="acell" id="cell-'+a.id+'">'
-      +'<button class="info-btn" id="ib-'+a.id+'" onclick="toggleTip(\''+a.id+'\')"><svg width="8" height="11" viewBox="0 0 8 11" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="4" cy="1.2" r="0.9" fill="currentColor"/><rect x="3.4" y="3.2" width="1.2" height="5.6" rx="0.1" fill="currentColor"/><rect x="1.8" y="3.2" width="4.4" height="0.9" rx="0.3" fill="currentColor"/><rect x="1.8" y="8" width="4.4" height="0.9" rx="0.3" fill="currentColor"/></svg></button>'
+      +'<div class="info-btn-wrap" id="ibw-'+a.id+'">'+('<span class="mkt-dot" id="dot-'+a.id+'" style="background:'+(isMarketOpen(a.id)?'#34d399':'#44445a')+'"></span>')+'<button class="info-btn" id="ib-'+a.id+'" onclick="toggleTip(\''+a.id+'\')"><svg width="8" height="11" viewBox="0 0 8 11" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="4" cy="1.2" r="0.9" fill="currentColor"/><rect x="3.4" y="3.2" width="1.2" height="5.6" rx="0.1" fill="currentColor"/><rect x="1.8" y="3.2" width="4.4" height="0.9" rx="0.3" fill="currentColor"/><rect x="1.8" y="8" width="4.4" height="0.9" rx="0.3" fill="currentColor"/></svg></button></div>'
       +'<div class="tooltip" id="tip-'+a.id+'"><div class="tooltip-arrow"></div><div class="tooltip-text">'+tipHtml+'</div></div>'
       +'<div class="acell-lbl"><span class="acell-tag '+a.tagClass+'">'+a.tag+'</span>'+a.label+'</div>'
       +'<div class="acell-val" id="val-'+a.id+'">'+a.vals[S.assetCur]+'</div>'
@@ -719,7 +847,7 @@ function toggleTip(id){
   }
 }
 document.addEventListener('click',function(e){
-  if(!e.target.closest('.acell')){
+  if(!e.target.closest('.tooltip')&&!e.target.closest('.info-btn')&&!e.target.closest('.info-btn-wrap')){
     document.querySelectorAll('.tooltip').forEach(function(t){t.classList.remove('show');});
     document.querySelectorAll('.info-btn').forEach(function(b){b.classList.remove('active');});
   }
@@ -769,11 +897,11 @@ function connectAssetsWS(){
         CTRL.vals.EUR='R$\u00a0'+eurBrlLive.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
         var vc=g('val-cur');if(vc)vc.textContent=CTRL.vals[S.assetCur];
         /* re-render all assets with new rate */
-        ASSET_LIST.forEach(function(a){if(a._usdPrice)updateAssetFromUsd(a.id,a._usdPrice);});
+        ASSET_LIST.forEach(function(a){if(a._usdPrice)updateAssetFromUsd(a.id,a._usdPrice,a._usdPrice);});
         return;
       }
-      if(sym==='BTCUSDT'){ASSET_LIST.find(function(x){return x.id==='btc';})._usdPrice=price;updateAssetFromUsd('btc',price);}
-      if(sym==='ETHUSDT'){ASSET_LIST.find(function(x){return x.id==='eth';})._usdPrice=price;updateAssetFromUsd('eth',price);}
+      if(sym==='BTCUSDT'){var bPrev=ASSET_LIST.find(function(x){return x.id==='btc';})._usdPrice||0;updateAssetFromUsd('btc',price,bPrev);}
+      if(sym==='ETHUSDT'){var ePrev=ASSET_LIST.find(function(x){return x.id==='eth';})._usdPrice||0;updateAssetFromUsd('eth',price,ePrev);}
     }catch(ex){}
   };
   ws.onerror=function(){if(S_assets.wsA===ws)setPill('dead','Erro WS assets');};
@@ -798,13 +926,24 @@ function makeVals(usdVal){
   };
 }
 
-function updateAssetFromUsd(id,usdVal){
+function updateAssetFromUsd(id,usdVal,prevOverride){
   var a=ASSET_LIST.find(function(x){return x.id===id;});
   if(!a)return;
+  var prev=prevOverride!==undefined?prevOverride:(a._usdPrice||0);
   a._usdPrice=usdVal;
   a.vals=makeVals(usdVal);
   var el=g('val-'+id);
-  if(el)el.textContent=a.vals[S.assetCur];
+  if(el){
+    var newT=a.vals[S.assetCur];
+    if(el.textContent!==newT){
+      el.textContent=newT;
+      if(prev&&prev!==usdVal){
+        el.classList.remove('ufl','dfl');
+        void el.offsetWidth;
+        el.classList.add(usdVal>prev?'ufl':'dfl');
+      }
+    }
+  }
 }
 
 /* Global proxy list — declared once, reused everywhere */
@@ -857,14 +996,14 @@ function parseYahoo(raw){
       var meta=data.chart.result[0].meta;
       var price=parseFloat(meta.regularMarketPrice||meta.previousClose);
       var prevClose=parseFloat(meta.previousClose||meta.chartPreviousClose||0);
-      /* Fallback: extract prevClose from indicators if meta fields are zero/equal to price */
+      /* Fallback: use second-to-last candle close from indicators */
       if((!prevClose||prevClose===price)&&data.chart.result[0].indicators){
         try{
           var closes=data.chart.result[0].indicators.quote[0].close;
-          for(var i=0;i<closes.length;i++){
-            var cv=parseFloat(closes[i]);
-            if(closes[i]!=null&&cv&&cv!==price){prevClose=cv;break;}
-          }
+          var valid=[];
+          for(var i=0;i<closes.length;i++){if(closes[i]!=null){var cv=parseFloat(closes[i]);if(cv)valid.push(cv);}}
+          if(valid.length>=2){prevClose=valid[valid.length-2];}
+          else if(valid.length===1&&valid[0]!==price){prevClose=valid[0];}
         }catch(ex){}
       }
       if(price&&!isNaN(price))return{price:price,prevClose:prevClose||null};
@@ -884,12 +1023,30 @@ function parseYahooClose(raw){
   try{
     var text=raw.contents||raw;
     var data=typeof text==='string'?JSON.parse(text):text;
-    var closes=data.chart.result[0].indicators.quote[0].close;
-    /* Collect all non-null closes, return second-to-last (last completed candle) */
+    var result=data.chart.result[0];
+    var meta=result.meta||{};
+    var closes=result.indicators.quote[0].close;
+    var timestamps=result.timestamp||[];
+    var now=Date.now()/1000;
+    /* Detect candle duration from meta or timestamps gap */
+    var candleSecs=86400; /* default 1d */
+    if(timestamps.length>=2){candleSecs=timestamps[1]-timestamps[0];}
     var valid=[];
-    for(var i=0;i<closes.length;i++){if(closes[i]!=null)valid.push(parseFloat(closes[i]));}
-    if(valid.length>=2)return valid[valid.length-2];
-    if(valid.length===1)return valid[0];
+    for(var i=0;i<closes.length;i++){
+      if(closes[i]!=null){
+        var ts=timestamps[i]||0;
+        /* Skip if candle started less than one candle-duration ago (still open) */
+        if(ts&&ts>now-candleSecs)continue;
+        valid.push(parseFloat(closes[i]));
+      }
+    }
+    /* Return last completed candle */
+    if(valid.length>=1)return valid[valid.length-1];
+    /* Fallback: second-to-last of all non-null */
+    var all=[];
+    for(var j=0;j<closes.length;j++){if(closes[j]!=null)all.push(parseFloat(closes[j]));}
+    if(all.length>=2)return all[all.length-2];
+    if(all.length===1)return all[0];
   }catch(e){}
   return null;
 }
@@ -921,8 +1078,8 @@ function fetchCommodity(sym){
   /* Do NOT encodeURIComponent(sym) — symbols like GC=F contain = which gets
      double-encoded when the full URL is later wrapped in a proxy. Yahoo accepts raw symbols. */
   var urls=[
-    'https://query1.finance.yahoo.com/v8/finance/chart/'+sym+'?interval=1d&range=2d',
-    'https://query2.finance.yahoo.com/v8/finance/chart/'+sym+'?interval=1d&range=2d',
+    'https://query1.finance.yahoo.com/v8/finance/chart/'+sym+'?interval=1d&range=5d',
+    'https://query2.finance.yahoo.com/v8/finance/chart/'+sym+'?interval=1d&range=5d',
     'https://query1.finance.yahoo.com/v7/finance/quote?symbols='+sym,
     'https://query2.finance.yahoo.com/v7/finance/quote?symbols='+sym
   ];
@@ -956,8 +1113,8 @@ async function fetchAssetsData(){
       fetch('https://api.binance.com/api/v3/klines?symbol=USDTBRL&interval=1d&limit=2')
     ]);
     var btcP=0,ethP=0;
-    if(binanceSnap[0].ok){btcP=parseFloat((await binanceSnap[0].json()).price);updateAssetFromUsd('btc',btcP);}
-    if(binanceSnap[1].ok){ethP=parseFloat((await binanceSnap[1].json()).price);updateAssetFromUsd('eth',ethP);}
+    if(binanceSnap[0].ok){btcP=parseFloat((await binanceSnap[0].json()).price);updateAssetFromUsd('btc',btcP,0);}
+    if(binanceSnap[1].ok){ethP=parseFloat((await binanceSnap[1].json()).price);updateAssetFromUsd('eth',ethP,0);}
     if(binanceSnap[2].ok){var kb=await binanceSnap[2].json();if(kb&&kb[0]){var c1h=parseFloat(kb[0][4]);A_CLOSE['btc:1h']=c1h;if(btcP)renderVarBadge('btc',btcP,c1h,'1h');}}
     if(binanceSnap[3].ok){var ke=await binanceSnap[3].json();if(ke&&ke[0]){var e1h=parseFloat(ke[0][4]);A_CLOSE['eth:1h']=e1h;if(ethP)renderVarBadge('eth',ethP,e1h,'1h');}}
     if(binanceSnap[4].ok){var kc=await binanceSnap[4].json();if(kc&&kc[0]){var cur1d=parseFloat(kc[0][4]);var curNow=S_assets.usdBrl||rt.usdBrl||0;A_CLOSE['cur:1d']=cur1d;if(curNow)renderVarBadge('cur',curNow,cur1d,'1d');}}
@@ -972,7 +1129,11 @@ async function fetchAssetsData(){
       {id:'nasdaq',sym:'^IXIC'},{id:'wheat',sym:'ZW=F'},{id:'soy',sym:'ZS=F'}
     ];
     (async function fetchQueue(i){
-      if(i>=tickers.length)return;
+      if(i>=tickers.length){
+        /* Queue done — init variations for any asset not yet rendered */
+        initAssetVariations();
+        return;
+      }
       var t=tickers[i];
       try{
         var result=await fetchCommodity(t.sym);
@@ -983,7 +1144,7 @@ async function fetchAssetsData(){
             A_IV[t.id]='1d';
             renderVarBadge(t.id,result.price,result.prevClose,'1d');
           } else {
-            /* prevClose missing or equal to price — fetch via dedicated historical call */
+            /* prevClose missing — fetch close price now that _usdPrice is set */
             A_IV[t.id]='1d';
             fetchAssetVar(t.id,'1d');
           }
@@ -992,8 +1153,6 @@ async function fetchAssetsData(){
       fetchQueue(i+1);
     }(0));
 
-    /* Init variation badges — skip assets already rendered inline above */
-    initAssetVariations();
     startCountdown();
 
   }catch(e){
@@ -1050,7 +1209,7 @@ function startCountdown(){
 var S_clock=null;
 function startClockTick(){
   if(S_clock)return;
-  S_clock=setInterval(function(){
+  S_clock=setInterval(function(){/* update market dots */['btc','eth','gold','silver','copper','wti','gas','sp500','nasdaq','wheat','soy'].forEach(function(id){var dot=document.getElementById('dot-'+id);if(dot){dot.style.background=isMarketOpen(id)?'#34d399':'#44445a';}});
     g('hts').textContent=new Date().toLocaleTimeString('pt-BR');
   },1000);
   g('hts').textContent=new Date().toLocaleTimeString('pt-BR');
