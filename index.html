@@ -177,6 +177,8 @@ header{display:flex;align-items:center;justify-content:space-between;padding:1re
 .footer-tip-hours{opacity:0.75;font-size:0.58rem;}
 .footer-tip-title{font-family:'DM Mono',monospace;font-size:0.5rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--tx3);margin-bottom:0.6rem;}
 
+
+
 /* FOOTER */
 footer{border-top:1px solid var(--b1);padding:0.55rem 0;margin-top:0.35rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:0.3rem;}
 .fn{font-family:'DM Mono',monospace;font-size:0.44rem;color:var(--tx3);}
@@ -360,68 +362,68 @@ var CTRL={
 var ASSET_LIST=[
   {id:'btc',label:'Bitcoin',tag:'Cripto',tagClass:'tag-crypto',iv:true,
    unit:'por unidade (BTC)',
-   vals:{BRL:'-',USD:'-',EUR:'-'},badge:'neu',badgeTxt:'\u2014',sub:'Binance \u00b7 aggTrade ao vivo',
+   vals:{BRL:'-',USD:'-',EUR:'-'},_usdPrice:0,badge:'neu',badgeTxt:'\u2014',sub:'Binance \u00b7 aggTrade ao vivo',
    tip:'Unidade: 1 Bitcoin inteiro \u2014 mas qualquer fra\u00e7\u00e3o pode ser comprada (ex: 0,001 BTC).\nO primeiro ativo escasso digital da hist\u00f3ria. Reserva de valor descentralizada com oferta limitada a 21 milh\u00f5es. Term\u00f4metro do apetite global por risco em cripto.'},
   {id:'eth',label:'Ethereum',tag:'Cripto',tagClass:'tag-crypto',iv:true,
    unit:'por unidade (ETH)',
-   vals:{BRL:'-',USD:'-',EUR:'-'},badge:'neu',badgeTxt:'\u2014',sub:'Binance \u00b7 aggTrade ao vivo',
+   vals:{BRL:'-',USD:'-',EUR:'-'},_usdPrice:0,badge:'neu',badgeTxt:'\u2014',sub:'Binance \u00b7 aggTrade ao vivo',
    tip:'Unidade: 1 Ether inteiro \u2014 tamb\u00e9m divis\u00edvel em fra\u00e7\u00f5es menores.\nA maior plataforma de contratos inteligentes do mundo. Base de DeFi, NFTs e tokeniza\u00e7\u00e3o de ativos. Seu desempenho reflete a sa\u00fade do ecossistema cripto al\u00e9m do Bitcoin.'},
   {id:'gold',label:'Ouro',tag:'Metal',tagClass:'tag-metal',iv:false,
    unit:'por troy oz \u00b7 1 oz = 31,1 g',
-   vals:{BRL:'-',USD:'-',EUR:'-'},badge:'neu',badgeTxt:'\u2014',sub:'Yahoo Finance \u00b7 futuros GC',
+   vals:{BRL:'-',USD:'-',EUR:'-'},_usdPrice:0,badge:'neu',badgeTxt:'\u2014',sub:'Yahoo Finance \u00b7 futuros GC',
    tip:'Unidade: 1 on\u00e7a troy (troy oz) = 31,1 gramas. \u00c9 o padr\u00e3o internacional para metais preciosos desde o s\u00e9culo XV.\nReserva de valor milenar adotada por bancos centrais do mundo todo. Sobe em crises, guerras e quando o d\u00f3lar enfraquece. Principal term\u00f4metro global de medo e incerteza.'},
   {id:'silver',label:'Prata',tag:'Metal',tagClass:'tag-metal',iv:false,
    unit:'por troy oz \u00b7 1 oz = 31,1 g',
-   vals:{BRL:'-',USD:'-',EUR:'-'},badge:'neu',badgeTxt:'\u2014',sub:'Yahoo Finance \u00b7 futuros SI',
+   vals:{BRL:'-',USD:'-',EUR:'-'},_usdPrice:0,badge:'neu',badgeTxt:'\u2014',sub:'Yahoo Finance \u00b7 futuros SI',
    tip:'Unidade: 1 on\u00e7a troy (troy oz) = 31,1 gramas. O mesmo padr\u00e3o do ouro, usado em todos os mercados de metais preciosos.\nMeio-termo entre metal precioso e industrial. Segue o ouro em crises mas com maior volatilidade. Demanda crescente em pain\u00e9is solares e eletr\u00f4nicos.'},
   {id:'copper',label:'Cobre',tag:'Metal',tagClass:'tag-metal',iv:false,
    unit:'por libra \u00b7 1 lb = 453,6 g',
-   vals:{BRL:'-',USD:'-',EUR:'-'},badge:'neu',badgeTxt:'\u2014',sub:'Yahoo Finance \u00b7 futuros HG',
+   vals:{BRL:'-',USD:'-',EUR:'-'},_usdPrice:0,badge:'neu',badgeTxt:'\u2014',sub:'Yahoo Finance \u00b7 futuros HG',
    tip:'Unidade: 1 libra (lb) = 453,6 gramas. Futuros de cobre s\u00e3o cotados em libras no mercado americano (COMEX).\nPresente em toda constru\u00e7\u00e3o e eletr\u00f4nico do planeta. Sua queda antecipa recess\u00f5es globais antes de qualquer outro indicador.'},
   {id:'wti',label:'Petr\u00f3leo WTI',tag:'Energia',tagClass:'tag-energy',iv:false,
    unit:'por barril \u00b7 1 barril = 158,99 L',
-   vals:{BRL:'-',USD:'-',EUR:'-'},badge:'neu',badgeTxt:'\u2014',sub:'Yahoo Finance \u00b7 futuros CL',
+   vals:{BRL:'-',USD:'-',EUR:'-'},_usdPrice:0,badge:'neu',badgeTxt:'\u2014',sub:'Yahoo Finance \u00b7 futuros CL',
    tip:'Unidade: 1 barril de petr\u00f3leo = 158,99 litros (42 gal\u00f5es americanos). \u00c9 a unidade padr\u00e3o do mercado de petr\u00f3leo desde o s\u00e9culo XIX.\nA commodity mais negociada do mundo. Afeta diretamente infla\u00e7\u00e3o, transporte e geopol\u00edtica. Sua varia\u00e7\u00e3o impacta desde o pre\u00e7o da gasolina at\u00e9 o custo de produ\u00e7\u00e3o global.'},
   {id:'gas',label:'G\u00e1s Natural',tag:'Energia',tagClass:'tag-energy',iv:false,
    unit:'por MMBtu \u00b7 \u2248 293 kWh',
-   vals:{BRL:'-',USD:'-',EUR:'-'},badge:'neu',badgeTxt:'\u2014',sub:'Yahoo Finance \u00b7 futuros NG',
+   vals:{BRL:'-',USD:'-',EUR:'-'},_usdPrice:0,badge:'neu',badgeTxt:'\u2014',sub:'Yahoo Finance \u00b7 futuros NG',
    tip:'Unidade: 1 MMBtu (Milh\u00e3o de BTU British Thermal Unit) \u2248 293 kWh de energia. \u00c9 o padr\u00e3o do mercado americano de g\u00e1s natural (NYMEX).\nEnergia de transi\u00e7\u00e3o entre petr\u00f3leo e renov\u00e1veis. Cr\u00edtico para aquecimento europeu e gera\u00e7\u00e3o el\u00e9trica. Alta volatilidade sazonal e forte sensibilidade a conflitos geopol\u00edticos.'},
   {id:'sp500',label:'S&P 500',tag:'\u00cdndice',tagClass:'tag-index',iv:false,
    unit:'pontos do \u00edndice',
-   vals:{BRL:'-',USD:'-',EUR:'-'},badge:'neu',badgeTxt:'\u2014',sub:'Yahoo Finance \u00b7 fechamento NY',
+   vals:{BRL:'-',USD:'-',EUR:'-'},_usdPrice:0,badge:'neu',badgeTxt:'\u2014',sub:'Yahoo Finance \u00b7 fechamento NY',
    tip:'Unidade: pontos do \u00edndice \u2014 n\u00e3o \u00e9 um pre\u00e7o direto, mas uma pontua\u00e7\u00e3o calculada com base no valor de mercado das 500 empresas que comp\u00f5em o \u00edndice.\n\u00cdndice das 500 maiores empresas americanas. Benchmark universal de performance \u2014 fundos do mundo todo se medem contra ele. Sua queda arrasta mercados emergentes e cripto.'},
   {id:'nasdaq',label:'Nasdaq',tag:'\u00cdndice',tagClass:'tag-index',iv:false,
    unit:'pontos do \u00edndice',
-   vals:{BRL:'-',USD:'-',EUR:'-'},badge:'neu',badgeTxt:'\u2014',sub:'Yahoo Finance \u00b7 fechamento NY',
+   vals:{BRL:'-',USD:'-',EUR:'-'},_usdPrice:0,badge:'neu',badgeTxt:'\u2014',sub:'Yahoo Finance \u00b7 fechamento NY',
    tip:'Unidade: pontos do \u00edndice \u2014 representa a pontua\u00e7\u00e3o composta pelas empresas de tecnologia listadas na bolsa Nasdaq, lideradas por Apple, Nvidia, Microsoft e Google.\nConcentra as gigantes da tecnologia global. Alta correla\u00e7\u00e3o com Bitcoin em momentos de stress. Quando cai, ativos de risco globais costumam seguir.'},
   {id:'wheat',label:'Trigo',tag:'Agr\u00edcola',tagClass:'tag-agri',iv:false,
    unit:'por bushel \u00b7 1 bushel = 27,2 kg',
-   vals:{BRL:'-',USD:'-',EUR:'-'},badge:'neu',badgeTxt:'\u2014',sub:'Yahoo Finance \u00b7 futuros ZW',
+   vals:{BRL:'-',USD:'-',EUR:'-'},_usdPrice:0,badge:'neu',badgeTxt:'\u2014',sub:'Yahoo Finance \u00b7 futuros ZW',
    tip:'Unidade: 1 bushel de trigo = 27,2 kg (60 libras). \u00c9 a medida tradicional de gr\u00e3os nos EUA, usada em todos os contratos futuros agr\u00edcolas.\nAlimento base de 35% da humanidade. Guerras, secas e geopol\u00edtica afetam diretamente seu pre\u00e7o. O conflito R\u00fassia-Ucr\u00e2nia em 2022 mostrou o impacto global de uma disruption no trigo.'},
   {id:'soy',label:'Soja',tag:'Agr\u00edcola',tagClass:'tag-agri',iv:false,
    unit:'por bushel \u00b7 1 bushel = 27,2 kg',
-   vals:{BRL:'-',USD:'-',EUR:'-'},badge:'neu',badgeTxt:'\u2014',sub:'Yahoo Finance \u00b7 futuros ZS',
+   vals:{BRL:'-',USD:'-',EUR:'-'},_usdPrice:0,badge:'neu',badgeTxt:'\u2014',sub:'Yahoo Finance \u00b7 futuros ZS',
    tip:'Unidade: 1 bushel de soja = 27,2 kg (60 libras). Mesmo padr\u00e3o do trigo, usado nos contratos da CBOT (Chicago Board of Trade).\nCommodity agr\u00edcola mais importante para o Brasil \u2014 maior exportador mundial. Base de ra\u00e7\u00e3o animal e \u00f3leo vegetal. Seu pre\u00e7o afeta diretamente o agroneg\u00f3cio e o c\u00e2mbio brasileiro.'}
 ];
 
 
 /* ── MARKET HOURS (horário de Brasília = UTC-3) ── */
 var MARKET_HOURS = {
-  /* Cripto: 24/7 */
   btc:   {always:true},
   eth:   {always:true},
-  /* Metais/Energia (COMEX/NYMEX): dom 18h-sex 17h NY = dom 20h-sex 19h BRT, pausa diária 17h-18h NY */
-  gold:   {tz:-5,days:[0,1,2,3,4,5],open:{h:18,m:0},close:{h:17,m:0},nextDay:true,pause:{from:{h:17,m:0},to:{h:18,m:0}}},
-  silver: {tz:-5,days:[0,1,2,3,4,5],open:{h:18,m:0},close:{h:17,m:0},nextDay:true,pause:{from:{h:17,m:0},to:{h:18,m:0}}},
-  copper: {tz:-5,days:[0,1,2,3,4,5],open:{h:18,m:0},close:{h:17,m:0},nextDay:true,pause:{from:{h:17,m:0},to:{h:18,m:0}}},
-  wti:    {tz:-5,days:[0,1,2,3,4,5],open:{h:18,m:0},close:{h:17,m:0},nextDay:true,pause:{from:{h:17,m:0},to:{h:18,m:0}}},
-  gas:    {tz:-5,days:[0,1,2,3,4,5],open:{h:18,m:0},close:{h:17,m:0},nextDay:true,pause:{from:{h:17,m:0},to:{h:18,m:0}}},
-  /* Bolsas NY (NYSE/NASDAQ): seg-sex 9:30-16h NY */
+  /* Metais COMEX: dom 18h-sex 17h15 ET (UTC-5), pausa diária 17h-17h45 ET */
+  gold:   {tz:-5,days:[0,1,2,3,4,5],open:{h:18,m:0},close:{h:17,m:15},nextDay:true,pause:{from:{h:17,m:0},to:{h:17,m:45}}},
+  silver: {tz:-5,days:[0,1,2,3,4,5],open:{h:18,m:0},close:{h:17,m:15},nextDay:true,pause:{from:{h:17,m:0},to:{h:17,m:45}}},
+  copper: {tz:-5,days:[0,1,2,3,4,5],open:{h:18,m:0},close:{h:17,m:15},nextDay:true,pause:{from:{h:17,m:0},to:{h:17,m:45}}},
+  /* Energia NYMEX: dom 17h-sex 16h CT (UTC-6), pausa diária 16h-17h CT */
+  wti:    {tz:-6,days:[0,1,2,3,4,5],open:{h:17,m:0},close:{h:16,m:0},nextDay:true,pause:{from:{h:16,m:0},to:{h:17,m:0}}},
+  gas:    {tz:-6,days:[0,1,2,3,4,5],open:{h:17,m:0},close:{h:16,m:0},nextDay:true,pause:{from:{h:16,m:0},to:{h:17,m:0}}},
+  /* Bolsas NY: seg-sex 9h30-16h ET (UTC-5) */
   sp500:  {tz:-5,days:[1,2,3,4,5],open:{h:9,m:30},close:{h:16,m:0},nextDay:false},
   nasdaq: {tz:-5,days:[1,2,3,4,5],open:{h:9,m:30},close:{h:16,m:0},nextDay:false},
-  /* Agrícolas CBOT: dom 19h-sex 13:20h Chicago (UTC-6) */
-  wheat:  {tz:-6,days:[0,1,2,3,4,5],open:{h:19,m:0},close:{h:13,m:20},nextDay:true},
-  soy:    {tz:-6,days:[0,1,2,3,4,5],open:{h:19,m:0},close:{h:13,m:20},nextDay:true}
+  /* Agrícolas CBOT: dom 19h-sex 7h45 CT + 8h30-13h20 CT (UTC-6) */
+  wheat:  {tz:-6,days:[0,1,2,3,4,5],open:{h:19,m:0},close:{h:7,m:45},nextDay:true,pause:{from:{h:7,m:45},to:{h:8,m:30}},close2:{h:13,m:20},open2:{h:8,m:30}},
+  soy:    {tz:-6,days:[0,1,2,3,4,5],open:{h:19,m:0},close:{h:7,m:45},nextDay:true,pause:{from:{h:7,m:45},to:{h:8,m:30}},close2:{h:13,m:20},open2:{h:8,m:30}}
 };
 
 function isMarketOpen(id){
@@ -429,23 +431,27 @@ function isMarketOpen(id){
   if(!mh)return false;
   if(mh.always)return true;
   var now=new Date();
-  /* Convert to market's local time */
   var utc=now.getTime()+(now.getTimezoneOffset()*60000);
   var local=new Date(utc+(mh.tz*3600000));
-  var day=local.getDay(); /* 0=dom */
+  var day=local.getDay();
   var h=local.getHours(),m=local.getMinutes();
   var mins=h*60+m;
   if(mh.days.indexOf(day)===-1)return false;
-  var openMins=mh.open.h*60+mh.open.m;
-  var closeMins=mh.close.h*60+mh.close.m;
   /* Pause check */
   if(mh.pause){
     var pauseFrom=mh.pause.from.h*60+mh.pause.from.m;
     var pauseTo=mh.pause.to.h*60+mh.pause.to.m;
     if(mins>=pauseFrom&&mins<pauseTo)return false;
   }
+  /* Two-session markets (CBOT agri) */
+  if(mh.open2&&mh.close2){
+    var open2=mh.open2.h*60+mh.open2.m;
+    var close2=mh.close2.h*60+mh.close2.m;
+    if(mins>=open2&&mins<close2)return true;
+  }
+  var openMins=mh.open.h*60+mh.open.m;
+  var closeMins=mh.close.h*60+mh.close.m;
   if(mh.nextDay){
-    /* Market spans midnight: open after openMins OR before closeMins */
     return mins>=openMins||mins<closeMins;
   } else {
     return mins>=openMins&&mins<closeMins;
@@ -738,9 +744,9 @@ function buildFooterTip(){
   var box=g('footerTipBox');if(!box)return;
   var markets=[
     {ids:['btc','eth'],          name:'Bitcoin / Ethereum', hours:'Sempre aberto'},
-    {ids:['gold','silver','copper','wti','gas'], name:'Metais e Energia (COMEX/NYMEX)', hours:'Abre domingo às 20h, fecha sexta às 19h (pausa diária das 19h às 20h)'},
-    {ids:['sp500','nasdaq'],     name:'S&P 500 / Nasdaq (NYSE)', hours:'Segunda a sexta, das 10:30h às 17h'},
-    {ids:['wheat','soy'],        name:'Trigo / Soja (CBOT)', hours:'Abre domingo às 21h, fecha sexta às 14:20h'}
+    {ids:['gold','silver','copper','wti','gas'], name:'Metais e Energia (COMEX/NYMEX)', hours:'Metais: abre dom 20h, fecha sex 19h15 (pausa 19h–19h45) — Energia: abre dom 19h, fecha sex 18h (pausa 18h–19h)'},
+    {ids:['sp500','nasdaq'],     name:'S&P 500 / Nasdaq (NYSE)', hours:'Segunda a sexta, das 10h30 às 17h'},
+    {ids:['wheat','soy'],        name:'Trigo / Soja (CBOT)', hours:'Sessão 1: dom 22h – sex 9h45 — Sessão 2: seg–sex 10h30 – 15h20'}
   ];
   var h='<div class="footer-tip-title">Horários de operação (fuso do dispositivo)</div>';
   markets.forEach(function(m){
@@ -897,7 +903,13 @@ function connectAssetsWS(){
         CTRL.vals.EUR='R$\u00a0'+eurBrlLive.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
         var vc=g('val-cur');if(vc)vc.textContent=CTRL.vals[S.assetCur];
         /* re-render all assets with new rate */
-        ASSET_LIST.forEach(function(a){if(a._usdPrice)updateAssetFromUsd(a.id,a._usdPrice,a._usdPrice);});
+        ASSET_LIST.forEach(function(a){
+          if(a._usdPrice){
+            a.vals=makeVals(a._usdPrice);
+            var rEl=g('val-'+a.id);
+            if(rEl)rEl.textContent=a.vals[S.assetCur];
+          }
+        });
         return;
       }
       if(sym==='BTCUSDT'){var bPrev=ASSET_LIST.find(function(x){return x.id==='btc';})._usdPrice||0;updateAssetFromUsd('btc',price,bPrev);}
@@ -926,22 +938,22 @@ function makeVals(usdVal){
   };
 }
 
+
+
 function updateAssetFromUsd(id,usdVal,prevOverride){
   var a=ASSET_LIST.find(function(x){return x.id===id;});
   if(!a)return;
   var prev=prevOverride!==undefined?prevOverride:(a._usdPrice||0);
+  var priceChanged=prev&&prev!==usdVal;
   a._usdPrice=usdVal;
   a.vals=makeVals(usdVal);
   var el=g('val-'+id);
   if(el){
-    var newT=a.vals[S.assetCur];
-    if(el.textContent!==newT){
-      el.textContent=newT;
-      if(prev&&prev!==usdVal){
-        el.classList.remove('ufl','dfl');
-        void el.offsetWidth;
-        el.classList.add(usdVal>prev?'ufl':'dfl');
-      }
+    el.textContent=a.vals[S.assetCur];
+    if(priceChanged){
+      el.classList.remove('ufl','dfl');
+      void el.offsetWidth;
+      el.classList.add(usdVal>prev?'ufl':'dfl');
     }
   }
 }
@@ -1121,6 +1133,8 @@ async function fetchAssetsData(){
 
     /* Connect WS for real-time BTC/ETH/rate */
     connectAssetsWS();
+    /* If WS already open, restore pill immediately (no onopen fires on reconnect) */
+    if(S_assets.wsA&&S_assets.wsA.readyState===1){setPill('live','Assets · ao vivo');}
 
     /* Commodities — fetched one at a time to avoid proxy rate limiting */
     var tickers=[
@@ -1128,9 +1142,10 @@ async function fetchAssetsData(){
       {id:'wti',sym:'CL=F'},{id:'gas',sym:'NG=F'},{id:'sp500',sym:'^GSPC'},
       {id:'nasdaq',sym:'^IXIC'},{id:'wheat',sym:'ZW=F'},{id:'soy',sym:'ZS=F'}
     ];
+    /* Clear variation cache so each cycle re-fetches fresh close prices */
+    tickers.forEach(function(t){delete A_CLOSE[t.id+':1d'];delete A_CLOSE[t.id+':1s'];delete A_CLOSE[t.id+':1m'];});
     (async function fetchQueue(i){
       if(i>=tickers.length){
-        /* Queue done — init variations for any asset not yet rendered */
         initAssetVariations();
         return;
       }
@@ -1138,13 +1153,15 @@ async function fetchAssetsData(){
       try{
         var result=await fetchCommodity(t.sym);
         if(result){
-          updateAssetFromUsd(t.id,result.price);
+          /* Capture prev BEFORE updating so flash triggers correctly */
+          var a=ASSET_LIST.find(function(x){return x.id===t.id;});
+          var prevP=(a&&a._usdPrice)||0;
+          updateAssetFromUsd(t.id,result.price,prevP);
           if(result.prevClose&&result.prevClose!==result.price){
             A_CLOSE[t.id+':1d']=result.prevClose;
             A_IV[t.id]='1d';
             renderVarBadge(t.id,result.price,result.prevClose,'1d');
           } else {
-            /* prevClose missing — fetch close price now that _usdPrice is set */
             A_IV[t.id]='1d';
             fetchAssetVar(t.id,'1d');
           }
@@ -1281,5 +1298,7 @@ function connectVolWS(){
   }
 }());
 </script>
+
+
 </body>
 </html>
